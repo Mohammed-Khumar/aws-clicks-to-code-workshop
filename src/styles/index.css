@@ -298,7 +298,7 @@
 html {
   scroll-behavior: smooth;
   font-size: 16px;
-  overflow-x: hidden;
+  overflow-x: clip;
   scrollbar-width: thin;
   scrollbar-color: var(--aws-green) var(--bg-primary);
   font-family: var(--font-primary);
@@ -312,7 +312,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   transition: background-color var(--transition-normal), color var(--transition-normal);
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 button, input, optgroup, select, textarea {
