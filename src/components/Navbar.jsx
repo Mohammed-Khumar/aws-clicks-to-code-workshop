@@ -57,7 +57,7 @@ export default function Navbar({ currentTheme, toggleTheme }) {
           >
             <span>RSVP ON MEETUP</span>
             <img
-              src="/assets/meetup-icon.png"
+              src={`${import.meta.env.BASE_URL}assets/meetup-icon.png`}
               alt="Meetup"
               className="btn-meetup-icon"
             />
@@ -93,7 +93,7 @@ export default function Navbar({ currentTheme, toggleTheme }) {
           >
             <span>RSVP ON MEETUP</span>
             <img
-              src="/assets/meetup-icon.png"
+              src={`${import.meta.env.BASE_URL}assets/meetup-icon.png`}
               alt="Meetup"
               className="btn-meetup-icon"
             />

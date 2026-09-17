@@ -65,7 +65,7 @@ export default function Hero() {
             >
               <span>{event.primaryCtaLabel}</span>
               <img
-                src="/assets/meetup-icon.png"
+                src={`${import.meta.env.BASE_URL}assets/meetup-icon.png`}
                 alt="Meetup"
                 className="btn-meetup-icon"
               />

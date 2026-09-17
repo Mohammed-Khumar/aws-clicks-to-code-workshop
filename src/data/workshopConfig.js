@@ -14,8 +14,8 @@ export const workshopConfig = {
     fullName: "AWS Student Builder Group at M. H. Saboo Siddik College of Engineering",
     parentWebsiteUrl: "https://awssbg-mhssce.in/",
     email: "awssbg@mhssce.ac.in",
-    programEmblem: "/assets/program-icon.png",
-    brandmarkLogo: "/assets/brandmark.png",
+    programEmblem: `${import.meta.env.BASE_URL}assets/program-icon.png`,
+    brandmarkLogo: `${import.meta.env.BASE_URL}assets/brandmark.png`,
     socials: {
       linkedin: "https://www.linkedin.com/company/aws-sbg-mhssce/",
       instagram: "https://www.instagram.com/awssbg_mhssce/"
@@ -44,7 +44,7 @@ export const workshopConfig = {
     title: "YOUR GUIDE",
     name: "AFREEN BANU",
     role: "Chief Guest · Speaker · Guide",
-    image: "/assets/afreen_bano.jpg",
+    image: `${import.meta.env.BASE_URL}assets/afreen_bano.jpg`,
     bio: [
       "Technology leader with extensive experience spanning AWS Cloud, DevSecOps, engineering leadership, and high-performing technical teams.",
       "Lead at HerTechEra – Pune Chapter, dedicated to fostering inclusive technology communities and hands-on learning.",
