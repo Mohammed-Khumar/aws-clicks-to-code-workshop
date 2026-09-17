@@ -472,14 +472,35 @@ code, pre {
 
 .btn-primary-green {
   background-color: var(--aws-green);
-  color: #050d1a;
-  box-shadow: 0 4px 16px rgba(0, 210, 106, 0.3);
+  color: #000000;
+  font-weight: 700;
+  box-shadow: 0 4px 16px rgba(0, 210, 106, 0.35);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
 }
 
 .btn-primary-green:hover {
-  background-color: #00ea76;
-  box-shadow: 0 6px 22px rgba(0, 210, 106, 0.45);
+  background-color: #00f078;
+  color: #000000;
+  box-shadow: 0 6px 24px rgba(0, 210, 106, 0.55);
   transform: translateY(-2px);
+}
+
+.btn-meetup-icon {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  object-fit: contain;
+  flex-shrink: 0;
+  display: inline-block;
+  vertical-align: middle;
+  transition: transform var(--transition-fast);
+}
+
+.btn:hover .btn-meetup-icon {
+  transform: scale(1.1);
 }
 
 .btn-primary-blue {

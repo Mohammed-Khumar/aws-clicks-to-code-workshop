@@ -67,7 +67,11 @@ export default function FinalCTA() {
                 id="final-meetup-cta-btn"
               >
                 <span>{finalCta.buttonText}</span>
-                <ArrowUpRight size={18} />
+                <img
+                  src="/assets/meetup-icon.png"
+                  alt="Meetup"
+                  className="btn-meetup-icon"
+                />
               </a>
 
               <div className="pass-advisory-note">

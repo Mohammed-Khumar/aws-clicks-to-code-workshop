@@ -35,7 +35,7 @@ export const workshopConfig = {
     // Meetup RSVP URL — Centralized configuration variable
     // Can be updated with the live Meetup event link when published
     meetupUrl: "https://www.meetup.com/aws-sbg-mhssce/events/",
-    primaryCtaLabel: "RSVP ON MEETUP →",
+    primaryCtaLabel: "RSVP ON MEETUP",
     calendarReminderUrl: "https://awssbg-mhssce.in/events"
   },
 
@@ -297,6 +297,6 @@ Outputs:
     title: "FROM CLICKS TO CODE",
     date: "24 SEPTEMBER 2026",
     subtext: "Transition from manual clicks to automated cloud infrastructure. Reserve your seat on Meetup.",
-    buttonText: "RSVP ON MEETUP →"
+    buttonText: "RSVP ON MEETUP"
   }
 };

@@ -56,7 +56,6 @@ export default function ManualVsAutomated() {
             <div className="shift-arrow-circle">
               <ArrowRight size={20} />
             </div>
-            <span className="shift-arrow-text">CODIFIED</span>
           </div>
 
           {/* Right: AUTOMATED (IaC & Speed) */}

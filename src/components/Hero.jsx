@@ -64,6 +64,11 @@ export default function Hero() {
               id="hero-primary-meetup-btn"
             >
               <span>{event.primaryCtaLabel}</span>
+              <img
+                src="/assets/meetup-icon.png"
+                alt="Meetup"
+                className="btn-meetup-icon"
+              />
             </a>
             <a
               href="#journey"

@@ -56,7 +56,11 @@ export default function Navbar({ currentTheme, toggleTheme }) {
             className="btn btn-primary-green nav-cta-btn"
           >
             <span>RSVP ON MEETUP</span>
-            <ArrowUpRight size={15} />
+            <img
+              src="/assets/meetup-icon.png"
+              alt="Meetup"
+              className="btn-meetup-icon"
+            />
           </a>
 
           {/* Mobile Menu Hamburger */}
@@ -87,7 +91,12 @@ export default function Navbar({ currentTheme, toggleTheme }) {
             className="btn btn-primary-green"
             onClick={closeMenu}
           >
-            <span>RSVP ON MEETUP →</span>
+            <span>RSVP ON MEETUP</span>
+            <img
+              src="/assets/meetup-icon.png"
+              alt="Meetup"
+              className="btn-meetup-icon"
+            />
           </a>
         </div>
       )}
