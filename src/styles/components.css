@@ -167,6 +167,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
+  font-family: var(--font-heading);
   font-size: 0.75rem;
   font-weight: 800;
   letter-spacing: 0.1em;
@@ -182,8 +183,10 @@
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
+  font-family: var(--font-heading);
   font-size: 0.75rem;
   font-weight: 700;
+  letter-spacing: 0.04em;
   color: var(--text-secondary);
   background: var(--bg-card);
   border: 1px solid var(--border-color);
@@ -206,25 +209,28 @@
 }
 
 .hero-h1 {
+  font-family: var(--font-heading);
   font-size: clamp(2.4rem, 4.8vw, 3.8rem);
-  font-weight: 900;
-  line-height: 1.08;
-  letter-spacing: -0.03em;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
   margin-bottom: var(--space-md);
 }
 
 .hero-topic {
+  font-family: var(--font-heading);
   font-size: clamp(1.1rem, 1.8vw, 1.35rem);
-  font-weight: 600;
+  font-weight: 700;
   color: var(--aws-blue);
   line-height: 1.4;
   margin-bottom: var(--space-sm);
 }
 
 .hero-tagline {
-  font-size: clamp(1rem, 1.4vw, 1.15rem);
+  font-family: var(--font-primary);
+  font-size: clamp(0.95rem, 1.4vw, 1.05rem);
   color: var(--text-secondary);
-  line-height: 1.6;
+  line-height: 1.65;
   margin-bottom: var(--space-xl);
 }
 
@@ -507,22 +513,31 @@
 }
 
 .editorial-label {
-  display: inline-block;
-  font-family: var(--font-mono);
-  font-size: 0.76rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.95rem;
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
   font-weight: 800;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
+  line-height: 1.2;
   color: var(--aws-green);
-  margin-bottom: var(--space-md);
+  background: var(--badge-bg);
+  border: 1px solid var(--badge-border);
+  border-radius: var(--radius-full);
+  margin-bottom: var(--space-sm);
 }
 
 .hook-headline {
-  font-size: clamp(1.75rem, 3.9vw, 3.6rem);
-  font-weight: 900;
+  font-family: var(--font-heading);
+  font-size: clamp(1.85rem, 3.8vw, 2.65rem);
+  font-weight: 800;
   line-height: 1.15;
-  letter-spacing: -0.03em;
-  margin-bottom: var(--space-md);
+  letter-spacing: -0.025em;
+  margin-bottom: var(--space-sm);
+  text-transform: uppercase;
 }
 
 .hook-line-nowrap {
@@ -537,11 +552,13 @@
 }
 
 .hook-subtext {
-  font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+  font-family: var(--font-primary);
+  font-size: clamp(0.95rem, 1.4vw, 1.05rem);
+  font-weight: 400;
   color: var(--text-secondary);
-  line-height: 1.6;
-  max-width: 640px;
-  margin: 0 auto clamp(1.25rem, 2vw, 1.75rem);
+  line-height: 1.65;
+  max-width: 720px;
+  margin: 0 auto clamp(1rem, 2vw, 1.5rem);
 }
 
 .hook-narrative-track {
@@ -697,24 +714,28 @@
 }
 
 .journey-stage-title {
-  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
-  font-weight: 900;
+  font-family: var(--font-heading);
+  font-size: clamp(1.4rem, 2.5vw, 1.85rem);
+  font-weight: 800;
   color: var(--text-primary);
-  margin-bottom: 0.5rem;
+  line-height: 1.2;
+  margin-bottom: 0.4rem;
 }
 
 .journey-stage-subtitle {
-  font-size: clamp(1.1rem, 1.8vw, 1.35rem);
-  font-weight: 600;
+  font-family: var(--font-heading);
+  font-size: clamp(0.95rem, 1.4vw, 1.1rem);
+  font-weight: 700;
   color: var(--aws-green);
-  margin-bottom: 1.25rem;
+  margin-bottom: 1rem;
 }
 
 .journey-stage-desc {
-  font-size: 1rem;
+  font-family: var(--font-primary);
+  font-size: 0.92rem;
   color: var(--text-secondary);
-  line-height: 1.7;
-  margin-bottom: 1.75rem;
+  line-height: 1.65;
+  margin-bottom: 1.5rem;
 }
 
 .journey-flow-chip {
@@ -925,14 +946,20 @@
 }
 
 .comp-panel-subtitle {
-  font-size: 0.76rem;
+  font-family: var(--font-heading);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   color: var(--text-muted);
   display: block;
 }
 
 .comp-title {
-  font-size: 1.5rem;
+  font-family: var(--font-heading);
+  font-size: 1.45rem;
   font-weight: 800;
+  letter-spacing: -0.02em;
   color: var(--text-primary);
   line-height: 1.15;
 }
@@ -958,9 +985,10 @@
 }
 
 .comp-desc {
-  font-size: 0.88rem;
+  font-family: var(--font-primary);
+  font-size: 0.92rem;
   color: var(--text-secondary);
-  line-height: 1.6;
+  line-height: 1.65;
   margin-bottom: 1.5rem;
 }
 
@@ -1009,14 +1037,18 @@
 
 .comp-step-text strong {
   display: block;
-  font-size: 0.88rem;
+  font-family: var(--font-heading);
+  font-size: 0.92rem;
+  font-weight: 700;
   color: var(--text-primary);
   margin-bottom: 0.15rem;
 }
 
 .comp-step-text span {
-  font-size: 0.78rem;
+  font-family: var(--font-primary);
+  font-size: 0.82rem;
   color: var(--text-muted);
+  line-height: 1.5;
 }
 
 .comp-shift-arrow {
@@ -1536,33 +1568,38 @@
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
   font-weight: 800;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--aws-green);
   background: var(--badge-bg);
   border: 1px solid var(--badge-border);
-  padding: 0.25rem 0.75rem;
+  padding: 0.35rem 0.85rem;
   border-radius: var(--radius-full);
   margin-bottom: 0.65rem;
 }
 
 .speaker-display-name {
   font-family: var(--font-heading);
-  font-size: clamp(2.2rem, 4vw, 3.2rem);
-  font-weight: 900;
-  letter-spacing: -0.03em;
+  font-size: clamp(2rem, 3.8vw, 2.75rem);
+  font-weight: 800;
+  letter-spacing: -0.025em;
   color: var(--text-primary);
-  line-height: 1.08;
+  line-height: 1.12;
+  margin-bottom: 0.75rem;
 }
 
 .speaker-narrative-bio {
   display: flex;
   flex-direction: column;
   gap: 0.85rem;
-  margin-bottom: 1.75rem;
+  margin-bottom: 1.5rem;
+  font-family: var(--font-primary);
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
 }
 
 .bio-paragraph {
@@ -1617,6 +1654,7 @@
    -------------------------------------------------------------------------- */
 .checklist-console-section {
   position: relative;
+  padding-bottom: clamp(0.75rem, 1.5vw, 1rem);
 }
 
 .readiness-console-board {
@@ -1806,16 +1844,19 @@
 }
 
 .gate-title {
-  font-size: 1rem;
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
   font-weight: 800;
+  letter-spacing: -0.015em;
   color: var(--text-primary);
   margin-bottom: 0.25rem;
 }
 
 .gate-instruction {
-  font-size: 0.82rem;
+  font-family: var(--font-primary);
+  font-size: 0.88rem;
   color: var(--text-secondary);
-  line-height: 1.5;
+  line-height: 1.55;
 }
 
 .gate-action-strip {
@@ -1860,6 +1901,7 @@
    -------------------------------------------------------------------------- */
 .launch-pass-section {
   position: relative;
+  padding-top: clamp(0.75rem, 1.5vw, 1rem);
 }
 
 .launch-pass-container {
@@ -1868,7 +1910,7 @@
   border-radius: var(--radius-xl);
   overflow: hidden;
   box-shadow: var(--shadow-lg), 0 0 35px rgba(0, 210, 106, 0.08);
-  max-width: 960px;
+  max-width: 1060px;
   margin: 0 auto;
 }
 
@@ -1920,32 +1962,42 @@
 }
 
 .pass-eyebrow-tag {
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.35rem 0.95rem;
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
   font-weight: 800;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  line-height: 1.2;
   color: var(--aws-green);
-  display: block;
-  margin-bottom: 0.5rem;
+  background: var(--badge-bg);
+  border: 1px solid var(--badge-border);
+  border-radius: var(--radius-full);
+  margin-bottom: var(--space-sm);
 }
 
 .pass-headline {
   font-family: var(--font-heading);
-  font-size: clamp(2.4rem, 5.5vw, 4rem);
-  font-weight: 900;
-  letter-spacing: -0.03em;
+  font-size: clamp(1.85rem, 3.8vw, 2.65rem);
+  font-weight: 800;
+  letter-spacing: -0.025em;
   color: var(--text-primary);
-  line-height: 1.08;
-  margin-bottom: 0.5rem;
+  line-height: 1.15;
+  text-transform: uppercase;
+  margin-bottom: var(--space-sm);
 }
 
 .pass-subheading {
-  font-size: clamp(1rem, 1.8vw, 1.2rem);
+  font-family: var(--font-primary);
+  font-size: clamp(0.95rem, 1.4vw, 1.05rem);
   color: var(--aws-blue);
   font-weight: 600;
-  max-width: 680px;
-  margin: 0 auto 2rem;
-  line-height: 1.5;
+  max-width: 720px;
+  margin: 0 auto 1.5rem;
+  line-height: 1.65;
 }
 
 .pass-coordinates-strip {

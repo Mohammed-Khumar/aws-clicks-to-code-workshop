@@ -13,11 +13,11 @@
   --aws-orange: #ff9900;
 
   /* Typography Stacks: Official Amazon Ember Font Family */
-  --font-family-base: 'Amazon Ember', 'Amazon Ember Display', 'AmazonEmberDisplay_Rg', sans-serif;
-  --font-heading: 'Amazon Ember', 'Amazon Ember Display', 'AmazonEmberDisplay_Bd', 'AmazonEmberDisplay_He', sans-serif;
-  --font-primary: 'Amazon Ember', 'Amazon Ember Display', 'AmazonEmberDisplay_Rg', 'AmazonEmberDisplay_Md', sans-serif;
-  --font-mono: 'Amazon Ember Mono', 'Amazon Ember Duospace', 'AmazonEmberMono_Rg', monospace;
-  --font-duospace: 'Amazon Ember Duospace', 'Amazon Ember Duospace Bold', monospace;
+  --font-family-base: 'Amazon Ember', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-heading: 'Amazon Ember', 'Amazon Ember Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-primary: 'Amazon Ember', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'Amazon Ember Mono', 'Amazon Ember Duospace', monospace;
+  --font-duospace: 'Amazon Ember Duospace', monospace;
 
   /* Spacing Scale */
   --space-2xs: 0.125rem;
