@@ -87,39 +87,51 @@
 }
 
 /* ==========================================================================
-   LIGHT THEME (Polished Support)
+   LIGHT THEME (High-Contrast, Elegant AWS Masterclass Palette)
    ========================================================================== */
 [data-theme="light"] {
-  --bg-primary: #ffffff;
+  /* Brand Accents - calibrated for 4.5:1+ WCAG AA contrast on white */
+  --aws-green: #008744;
+  --aws-blue: #0972d3;
+  --aws-orange: #d97706;
+
+  /* Surfaces & Canvas */
+  --bg-primary: #fcfdfe;
   --bg-secondary: #f8fafc;
   --bg-card: #ffffff;
   --bg-card-hover: #f1f5f9;
-  --bg-elevated: #f8fafc;
-  --bg-code: #1e293b;
+  --bg-elevated: #ffffff;
+  --bg-code: #0f172a;
   --bg-terminal: #0f172a;
 
+  /* Typography */
   --text-primary: #0f172a;
   --text-secondary: #475569;
   --text-muted: #64748b;
   --text-inverse: #ffffff;
 
+  /* Borders */
   --border-color: #e2e8f0;
-  --border-subtle: rgba(0, 0, 0, 0.06);
-  --border-active: #00a854;
-  --border-accent: #0284c7;
+  --border-subtle: rgba(15, 23, 42, 0.05);
+  --border-active: #008744;
+  --border-accent: #0972d3;
 
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06);
-  --shadow-lg: 0 10px 24px rgba(0, 0, 0, 0.08);
-  --shadow-glow-green: 0 0 16px rgba(0, 210, 106, 0.15);
-  --shadow-glow-blue: 0 0 16px rgba(59, 178, 255, 0.15);
+  /* Elevation Shadows (Crisp, Airy Multi-layer) */
+  --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.06), 0 1px 2px rgba(15, 23, 42, 0.04);
+  --shadow-md: 0 4px 14px -2px rgba(15, 23, 42, 0.08), 0 2px 6px -1px rgba(15, 23, 42, 0.04);
+  --shadow-lg: 0 12px 28px -4px rgba(15, 23, 42, 0.1), 0 4px 10px -2px rgba(15, 23, 42, 0.05);
+  --shadow-glow-green: 0 0 20px rgba(0, 135, 68, 0.12);
+  --shadow-glow-blue: 0 0 20px rgba(9, 114, 211, 0.12);
 
+  /* Navigation */
   --nav-bg: rgba(255, 255, 255, 0.94);
   --nav-border: rgba(226, 232, 240, 0.9);
 
-  --badge-bg: rgba(0, 168, 84, 0.08);
-  --badge-border: rgba(0, 168, 84, 0.25);
-  --badge-text: #007a3d;
+  /* Badges & Indicators */
+  --badge-bg: rgba(0, 135, 68, 0.08);
+  --badge-border: rgba(0, 135, 68, 0.22);
+  --badge-text: #008744;
 
+  /* Cards */
   --card-gradient: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
 }

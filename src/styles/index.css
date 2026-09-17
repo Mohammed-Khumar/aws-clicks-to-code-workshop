@@ -584,6 +584,46 @@ code, pre {
   transform: translateY(-2px);
 }
 
+/* Light Theme Button Enhancements */
+[data-theme="light"] .btn-primary-green {
+  background-color: var(--aws-green);
+  color: #ffffff;
+  box-shadow: 0 4px 16px rgba(0, 135, 68, 0.28);
+}
+
+[data-theme="light"] .btn-primary-green:hover {
+  background-color: #00723a;
+  color: #ffffff;
+  box-shadow: 0 6px 22px rgba(0, 135, 68, 0.38);
+}
+
+[data-theme="light"] .btn-primary-blue {
+  background-color: var(--aws-blue);
+  color: #ffffff;
+  box-shadow: 0 4px 16px rgba(9, 114, 211, 0.25);
+}
+
+[data-theme="light"] .btn-primary-blue:hover {
+  background-color: #075fb3;
+  color: #ffffff;
+  box-shadow: 0 6px 22px rgba(9, 114, 211, 0.35);
+}
+
+[data-theme="light"] .btn-outline-green {
+  color: var(--aws-green);
+  border-color: rgba(0, 135, 68, 0.4);
+}
+
+[data-theme="light"] .btn-outline-green:hover {
+  background: rgba(0, 135, 68, 0.08);
+  border-color: var(--aws-green);
+}
+
+[data-theme="light"] ::selection {
+  background-color: rgba(0, 135, 68, 0.2);
+  color: #0f172a;
+}
+
 /* ==========================================================================
    SECTION WRAPPER BASE
    ========================================================================== */
