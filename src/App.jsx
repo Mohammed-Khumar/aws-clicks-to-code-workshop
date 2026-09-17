@@ -4,7 +4,6 @@ import Hero from './components/Hero';
 import TheHook from './components/TheHook';
 import JourneyTimeline from './components/JourneyTimeline';
 import ManualVsAutomated from './components/ManualVsAutomated';
-import TerminalViewer from './components/TerminalViewer';
 import TechnologyStack from './components/TechnologyStack';
 import SpeakerSection from './components/SpeakerSection';
 import ArrivalInstructions from './components/ArrivalInstructions';
@@ -34,7 +33,6 @@ export default function App() {
         <TheHook />
         <JourneyTimeline />
         <ManualVsAutomated />
-        <TerminalViewer />
         <TechnologyStack />
         <SpeakerSection />
         <ArrivalInstructions />

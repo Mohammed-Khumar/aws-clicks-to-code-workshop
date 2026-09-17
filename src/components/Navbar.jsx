@@ -29,7 +29,7 @@ export default function Navbar({ currentTheme, toggleTheme }) {
           <ul className="nav-links-desktop">
             <li><a href="#journey" className="nav-link-item">Journey</a></li>
             <li><a href="#comparison" className="nav-link-item">Clicks to Code</a></li>
-            <li><a href="#terminal" className="nav-link-item">Terminal &amp; IaC</a></li>
+            <li><a href="#stack" className="nav-link-item">The Stack</a></li>
             <li><a href="#speaker" className="nav-link-item">Your Guide</a></li>
             <li><a href="#checklist" className="nav-link-item">Checklist</a></li>
           </ul>
@@ -77,7 +77,7 @@ export default function Navbar({ currentTheme, toggleTheme }) {
         <div className="mobile-drawer">
           <a href="#journey" className="mobile-drawer-link" onClick={closeMenu}>Journey</a>
           <a href="#comparison" className="mobile-drawer-link" onClick={closeMenu}>Clicks to Code</a>
-          <a href="#terminal" className="mobile-drawer-link" onClick={closeMenu}>Terminal &amp; IaC</a>
+          <a href="#stack" className="mobile-drawer-link" onClick={closeMenu}>The Stack</a>
           <a href="#speaker" className="mobile-drawer-link" onClick={closeMenu}>Your Guide</a>
           <a href="#checklist" className="mobile-drawer-link" onClick={closeMenu}>Checklist</a>
           <a
