@@ -76,29 +76,36 @@ export default function Navbar({ currentTheme, toggleTheme }) {
         </div>
       </div>
 
-      {/* Mobile Drawer */}
+      {/* Mobile Drawer & Backdrop */}
       {mobileMenuOpen && (
-        <div className="mobile-drawer">
-          <a href="#journey" className="mobile-drawer-link" onClick={closeMenu}>Journey</a>
-          <a href="#comparison" className="mobile-drawer-link" onClick={closeMenu}>Clicks to Code</a>
-          <a href="#stack" className="mobile-drawer-link" onClick={closeMenu}>The Stack</a>
-          <a href="#speaker" className="mobile-drawer-link" onClick={closeMenu}>Your Guide</a>
-          <a href="#checklist" className="mobile-drawer-link" onClick={closeMenu}>Checklist</a>
-          <a
-            href={event.meetupUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn btn-primary-green"
-            onClick={closeMenu}
-          >
-            <span>RSVP ON MEETUP</span>
-            <img
-              src={`${import.meta.env.BASE_URL}assets/meetup-icon.png`}
-              alt="Meetup"
-              className="btn-meetup-icon"
-            />
-          </a>
-        </div>
+        <>
+          <div className="mobile-drawer-backdrop" onClick={closeMenu} aria-hidden="true" />
+          <div className="mobile-drawer" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
+            <nav className="mobile-nav-list">
+              <a href="#journey" className="mobile-drawer-link" onClick={closeMenu}>Journey</a>
+              <a href="#comparison" className="mobile-drawer-link" onClick={closeMenu}>Clicks to Code</a>
+              <a href="#stack" className="mobile-drawer-link" onClick={closeMenu}>The Stack</a>
+              <a href="#speaker" className="mobile-drawer-link" onClick={closeMenu}>Your Guide</a>
+              <a href="#checklist" className="mobile-drawer-link" onClick={closeMenu}>Checklist</a>
+            </nav>
+            <div className="mobile-drawer-cta">
+              <a
+                href={event.meetupUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-primary-green mobile-drawer-btn"
+                onClick={closeMenu}
+              >
+                <span>RSVP ON MEETUP</span>
+                <img
+                  src={`${import.meta.env.BASE_URL}assets/meetup-icon.png`}
+                  alt="Meetup"
+                  className="btn-meetup-icon"
+                />
+              </a>
+            </div>
+          </div>
+        </>
       )}
     </header>
   );
