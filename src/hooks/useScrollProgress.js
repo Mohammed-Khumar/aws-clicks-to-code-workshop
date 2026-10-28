@@ -39,3 +39,4 @@ export function useScrollProgress(threshold = 20) {
 
   return { scrollProgress, isScrolled };
 }
+

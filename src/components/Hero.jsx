@@ -1,11 +1,11 @@
 import React from 'react';
-import { Calendar, MapPin, Sparkles, ArrowRight, UserCheck, ShieldCheck, Terminal, Cpu } from 'lucide-react';
+import { Calendar, MapPin, Sparkles, ArrowRight, UserCheck, ShieldCheck } from 'lucide-react';
 import { workshopConfig } from '../data/workshopConfig';
 import InfrastructurePipeline from './InfrastructurePipeline';
 import { useInView } from '../hooks/useInView';
 
 export default function Hero() {
-  const { event, organization, speaker } = workshopConfig;
+  const { event, speaker } = workshopConfig;
   const [heroRef, isInView] = useInView({ threshold: 0.1 });
 
   const scrollToSection = (e, sectionId) => {
@@ -20,70 +20,83 @@ export default function Hero() {
 
   return (
     <section id="hero" className="hero-section" ref={heroRef}>
-      {/* Subtle Engineering Grid Backdrop */}
+      {/* Subtle Architectural Grid Backdrop */}
       <div className="hero-bg-grid" aria-hidden="true" />
       <div className="hero-ambient-glow" aria-hidden="true" />
 
       <div className="container hero-grid">
-        {/* Left: Event Typography & Conversion */}
+        {/* Left: Event Typography & Core Conversion Engine */}
         <div className={`hero-copy ${isInView ? 'hero-revealed' : ''}`}>
-          {/* Eyebrow / Chapter Lockup */}
+          {/* Eyebrow / Chapter Identification */}
           <div className="hero-eyebrow-row">
             <span className="hero-eyebrow-badge">
               <Sparkles size={13} className="text-green-highlight" />
               <span>AWS SBG × MHSSCE</span>
             </span>
             <span className="hero-badge-pill">
-              <span className="live-beacon"></span>
-              <span>Hands-on Cloud Masterclass</span>
+              <span className="live-beacon" aria-hidden="true"></span>
+              <span>Hands-on Cloud Workshop</span>
             </span>
           </div>
 
-          {/* Main Title */}
+          {/* Magnetic Primary Headline */}
           <h1 className="hero-h1">
-            <span className="hero-h1-line hero-h1-primary">AWS FROM</span>{' '}
-            <span className="hero-h1-line hero-h1-gradient">CLICKS TO CODE</span>
+            <span className="hero-h1-prefix">AWS FROM</span>
+            <span className="hero-h1-highlight">CLICKS TO CODE</span>
           </h1>
 
-          {/* Workshop Topic */}
+          {/* Signature Action Manifesto */}
+          <p className="hero-manifesto">
+            See the Cloud. Build It. Access It. Automate It.
+          </p>
+
+          {/* Workshop Description */}
           <p className="hero-topic">
             {event.topic}
           </p>
 
-          {/* Tagline */}
-          <p className="hero-tagline">
-            {event.tagline}
-          </p>
-
-          {/* Compact Event Metadata Strip with Interactive Micro-actions */}
-          <div className="hero-meta-box" role="region" aria-label="Key Event Details">
-            <div className="meta-chip">
-              <Calendar size={16} className="meta-chip-icon text-green-highlight" />
-              <span>Date: <strong>{event.date}</strong></span>
+          {/* Open Technical Spec Row — No Clunky Nested Cards */}
+          <div className="hero-specs-row" role="region" aria-label="Event Schedule and Location">
+            <div className="spec-item">
+              <Calendar size={15} className="spec-item-icon text-green-highlight" />
+              <div className="spec-item-content">
+                <span className="spec-label">Date</span>
+                <span className="spec-value">{event.date}</span>
+              </div>
             </div>
-            
+
+            <div className="spec-divider" aria-hidden="true" />
+
             <a 
               href="#final-cta" 
-              className="meta-chip meta-chip-interactive"
+              className="spec-item spec-item-link"
               onClick={(e) => scrollToSection(e, 'final-cta')}
-              title="View venue details"
+              title="Jump to venue and directions"
             >
-              <MapPin size={16} className="meta-chip-icon text-blue-highlight" />
-              <span>Venue: <strong>{event.venue}</strong></span>
+              <MapPin size={15} className="spec-item-icon text-blue-highlight" />
+              <div className="spec-item-content">
+                <span className="spec-label">Venue</span>
+                <span className="spec-value">{event.venue}</span>
+              </div>
             </a>
+
+            <div className="spec-divider" aria-hidden="true" />
 
             <a 
               href="#speaker" 
-              className="meta-chip meta-chip-interactive"
+              className="spec-item spec-item-link"
               onClick={(e) => scrollToSection(e, 'speaker')}
-              title="Learn about your speaker"
+              title="View speaker bio"
             >
-              <UserCheck size={16} className="meta-chip-icon text-green-highlight" />
-              <span>Guide: <strong>{speaker.name}</strong></span>
+              <UserCheck size={15} className="spec-item-icon text-green-highlight" />
+              <div className="spec-item-content">
+                <span className="spec-label">Speaker</span>
+                <span className="spec-value">{speaker.name}</span>
+              </div>
             </a>
           </div>
 
-          {/* CTA Group */}
+          {/* Primary & Secondary CTAs */}
           <div className="hero-cta-group">
             <a
               href={event.meetupUrl}
@@ -110,14 +123,14 @@ export default function Hero() {
             </a>
           </div>
 
-          {/* Micro trust indicator */}
+          {/* Micro Trust Indicator */}
           <div className="hero-trust-indicator">
-            <ShieldCheck size={13} className="text-green-highlight" />
-            <span>Zero Admission Fee · Hands-on Live AWS Cloud Environment</span>
+            <ShieldCheck size={14} className="text-green-highlight" />
+            <span>Zero Admission Fee · Free Admission via Meetup RSVP · Live AWS Cloud Environment</span>
           </div>
         </div>
 
-        {/* Right: Interactive Infrastructure Visualization */}
+        {/* Right: Technical Infrastructure Sandbox Interface */}
         <div className={`hero-visual-col ${isInView ? 'hero-visual-revealed' : ''}`}>
           <InfrastructurePipeline />
         </div>

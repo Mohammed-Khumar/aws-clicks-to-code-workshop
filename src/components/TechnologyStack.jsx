@@ -1,27 +1,66 @@
 import React, { useState } from 'react';
-import { Cloud, Server, ShieldCheck, Globe, FileCode2, Terminal, Layers, ArrowRight, CheckCircle2 } from 'lucide-react';
-import { workshopConfig } from '../data/workshopConfig';
+import { 
+  Cloud, 
+  Server, 
+  ShieldCheck, 
+  Globe, 
+  FileCode2, 
+  Terminal, 
+  Layers, 
+  ArrowRight
+} from 'lucide-react';
 import { useInView } from '../hooks/useInView';
 
 export default function TechnologyStack() {
-  const { techStack } = workshopConfig;
   const [activeTier, setActiveTier] = useState(null);
   const [sectionRef, isInView] = useInView({ threshold: 0.15 });
 
-  const stackIcons = {
-    Cloud: Cloud,
-    Server: Server,
-    ShieldCheck: ShieldCheck,
-    Globe: Globe,
-    FileCode2: FileCode2
-  };
-
-  const techSpecs = [
-    { tier: "01", tag: "FOUNDATION", spec: "VPC Boundary · Multi-AZ Elasticity", relationship: "Provides network isolation & global compute targets" },
-    { tier: "02", tag: "COMPUTE", spec: "Amazon Linux 2023 · t2.micro", relationship: "Executes workload inside on-demand virtual hardware" },
-    { tier: "03", tag: "ZERO-TRUST", spec: "IAM Authenticated · No Port 22", relationship: "Provides secure keyless terminal access without SSH keys" },
-    { tier: "04", tag: "APPLICATION", spec: "httpd daemon · Port 80 Live", relationship: "Hosts customized HTML webpage & serves web traffic" },
-    { tier: "05", tag: "AUTOMATION", spec: "Declarative YAML · Deterministic", relationship: "Codifies all 4 tiers into automated CloudFormation code" }
+  const architectureLayers = [
+    {
+      tier: "01",
+      name: "AWS Global Cloud",
+      category: "FOUNDATION & REGION",
+      icon: Cloud,
+      role: "Provides regional boundary in Mumbai (ap-south-1), Multi-AZ resilience, and isolated VPC routing.",
+      spec: "VPC: 10.0.0.0/16 · IGW Attached",
+      connectorToNext: "Hosts Compute Hardware"
+    },
+    {
+      tier: "02",
+      name: "Amazon EC2",
+      category: "COMPUTE CAPACITY",
+      icon: Server,
+      role: "Virtual compute instance (t2.micro) running Amazon Linux 2023 with elastic hardware sizing.",
+      spec: "1 vCPU · 1 GiB RAM · AL2023",
+      connectorToNext: "Secured via IAM Roles"
+    },
+    {
+      tier: "03",
+      name: "AWS Systems Manager",
+      category: "ZERO-TRUST CONTROL PLANE",
+      icon: ShieldCheck,
+      role: "Enables keyless terminal administration directly through the browser. Port 22 is closed with zero SSH keys.",
+      spec: "IAM Policy Access · Encrypted Channel",
+      connectorToNext: "Bootstraps Web Daemon"
+    },
+    {
+      tier: "04",
+      name: "Apache HTTP Server",
+      category: "APPLICATION DELIVERY",
+      icon: Globe,
+      role: "Runs httpd web service on port 80 to deliver customized workshop HTML pages across the public internet.",
+      spec: "Daemon: httpd · Port 80 Live",
+      connectorToNext: "Codified into Declarative Template"
+    },
+    {
+      tier: "05",
+      name: "AWS CloudFormation",
+      category: "INFRASTRUCTURE AS CODE",
+      icon: FileCode2,
+      role: "Translates all compute, networking, and security configurations into a single reproducible YAML template.",
+      spec: "Deterministic IaC · 45s Deployment",
+      connectorToNext: null
+    }
   ];
 
   return (
@@ -35,69 +74,71 @@ export default function TechnologyStack() {
           </span>
           <h2 className="section-title">THE ENGINEERING STACK</h2>
           <p className="section-description">
-            Five precision AWS primitives and services connected into one production-grade infrastructure pipeline.
+            How five AWS primitives and software layers interlock into a unified, production-grade cloud delivery pipeline.
           </p>
         </div>
 
-        {/* Blueprint Architecture Matrix */}
-        <div className={`stack-matrix-container ${isInView ? 'stack-cards-revealed' : ''}`} role="region" aria-label="AWS Infrastructure Architecture Stack">
-          {/* Top Circuit Ribbon with Animated Signal Pulse */}
-          <div className="stack-circuit-ribbon" aria-hidden="true">
-            <div className="circuit-line">
-              <div className="circuit-signal-pulse" />
-            </div>
-            <div className="circuit-nodes">
-              {techStack.map((_, idx) => (
-                <span 
-                  key={idx} 
-                  className={`circuit-node-dot ${activeTier === idx ? 'active' : ''}`}
-                />
-              ))}
-            </div>
+        {/* Connected Architecture Blueprint Pipeline */}
+        <div 
+          className={`stack-architecture-flow ${isInView ? 'stack-cards-revealed' : ''}`} 
+          role="region" 
+          aria-label="Connected AWS Cloud Architecture Pipeline"
+        >
+          {/* Top Bus Line with Traveling Signal Pulse */}
+          <div className="stack-bus-track" aria-hidden="true">
+            <div className="bus-signal-pulse" />
           </div>
 
-          {/* 5 Architecture Columns */}
-          <div className="stack-tiers-grid">
-            {techStack.map((tech, idx) => {
-              const Icon = stackIcons[tech.icon] || Server;
-              const meta = techSpecs[idx] || { tier: `0${idx + 1}`, tag: tech.category, spec: "AWS Cloud", relationship: "" };
+          {/* Sequential Interlocking Layers */}
+          <div className="architecture-layers-grid">
+            {architectureLayers.map((layer, idx) => {
+              const Icon = layer.icon;
               const isHovered = activeTier === idx;
+              const isRelated = activeTier !== null && (activeTier === idx || activeTier === idx - 1 || activeTier === idx + 1);
 
               return (
                 <div
-                  key={tech.name}
-                  className={`stack-tier-panel ${isHovered ? 'tier-hovered' : ''}`}
+                  key={layer.name}
+                  className={`architecture-tier-card ${isHovered ? 'tier-active' : ''} ${isRelated ? 'tier-related' : ''}`}
                   onMouseEnter={() => setActiveTier(idx)}
                   onMouseLeave={() => setActiveTier(null)}
                   tabIndex={0}
                   role="article"
-                  aria-label={`${tech.name} - ${meta.tag}`}
+                  aria-label={`${layer.name} (${layer.category}): ${layer.role}`}
                 >
-                  {/* Tier Meta Header */}
-                  <div className="tier-header-strip">
-                    <span className="tier-index">{meta.tier}</span>
-                    <span className="tier-tag-pill">{meta.tag}</span>
+                  {/* Tier Sequence & Domain Tag */}
+                  <div className="tier-meta-bar">
+                    <span className="tier-sequence-code">LAYER {layer.tier}</span>
+                    <span className="tier-category-pill">{layer.category}</span>
                   </div>
 
-                  {/* Icon & Service Name */}
-                  <div className="tier-main-content">
-                    <div className="tier-icon-shield">
-                      <Icon size={22} />
+                  {/* Icon & Core Title */}
+                  <div className="tier-hero-block">
+                    <div className="tier-service-icon-wrap">
+                      <Icon size={24} />
                     </div>
-                    <h3 className="tier-service-name">{tech.name}</h3>
-                    <p className="tier-service-role">{tech.role}</p>
+                    <div>
+                      <h3 className="tier-display-name">{layer.name}</h3>
+                      <div className="tier-spec-chip">
+                        <Terminal size={11} className="spec-chip-icon text-green-highlight" />
+                        <span>{layer.spec}</span>
+                      </div>
+                    </div>
                   </div>
 
-                  {/* Relationship highlight on hover */}
-                  <div className="tier-relationship-strip">
-                    <span className="relationship-text">{meta.relationship}</span>
-                  </div>
+                  {/* Role & Workshop Participation */}
+                  <p className="tier-narrative-role">
+                    {layer.role}
+                  </p>
 
-                  {/* Technical Spec Chip */}
-                  <div className="tier-spec-footer">
-                    <Terminal size={12} className="spec-icon" />
-                    <span className="tier-spec-text">{meta.spec}</span>
-                  </div>
+                  {/* Inter-Service Relationship Connector */}
+                  {layer.connectorToNext && (
+                    <div className="tier-downstream-bridge" aria-hidden="true">
+                      <span className="bridge-arrow-icon">↓</span>
+                      <span className="bridge-text">{layer.connectorToNext}</span>
+                      <ArrowRight size={13} className="bridge-arrow-desktop" />
+                    </div>
+                  )}
                 </div>
               );
             })}

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Check, ClipboardList, CheckCircle2, AlertCircle, Laptop, ShieldCheck, UserCheck, Cloud, RotateCcw } from 'lucide-react';
+import { Check, ClipboardList, CheckCircle2, AlertCircle, Laptop, ShieldCheck, UserCheck, Cloud, RotateCcw, Sparkles } from 'lucide-react';
 import { workshopConfig } from '../data/workshopConfig';
 import { useInView } from '../hooks/useInView';
 
@@ -75,29 +75,36 @@ export default function ArrivalInstructions() {
           </p>
         </div>
 
-        {/* Readiness Console Container */}
-        <div className={`readiness-console-board ${isInView ? 'console-revealed' : ''}`}>
-          {/* Top Console Status Bar */}
-          <div className="readiness-top-bar">
-            <div className="readiness-status-indicator">
-              <span className={`status-lamp ${isFullyCleared ? 'lamp-cleared' : 'lamp-pending'}`}></span>
-              <span className="readiness-status-label">
-                {isFullyCleared
-                  ? 'FLIGHT READINESS: 100% CLEARED TO BUILD'
-                  : `PRE-FLIGHT STATUS: ${completedCount} OF ${totalItems} VERIFIED (${progressPercent}%)`}
-              </span>
+        {/* Readiness Verification Board */}
+        <div className={`readiness-board ${isInView ? 'console-revealed' : ''}`}>
+          {/* Top Console Status Ribbon */}
+          <div className="readiness-status-ribbon">
+            <div className="status-ribbon-left">
+              <span className={`status-lamp ${isFullyCleared ? 'lamp-cleared' : 'lamp-pending'}`} aria-hidden="true" />
+              <div className="status-text-wrap">
+                <span className="status-headline">
+                  {isFullyCleared
+                    ? 'PRE-FLIGHT STATUS: 100% CLEARED TO BUILD'
+                    : `PRE-FLIGHT STATUS: ${completedCount} OF ${totalItems} VERIFIED (${progressPercent}%)`}
+                </span>
+                <span className="status-subline">
+                  {isFullyCleared
+                    ? 'All requirements satisfied. Your workstation and credentials are ready.'
+                    : 'Please review and verify remaining pre-requisites before heading to the venue.'}
+                </span>
+              </div>
             </div>
 
-            <div className="readiness-actions">
-              <div className="readiness-progress-track" aria-hidden="true">
+            <div className="status-ribbon-actions">
+              <div className="readiness-gauge-track" aria-hidden="true">
                 <div
-                  className="readiness-progress-bar"
+                  className="readiness-gauge-fill"
                   style={{ width: `${progressPercent}%` }}
                 />
               </div>
               <button
                 type="button"
-                className="btn-toggle-all"
+                className="btn-toggle-status"
                 onClick={handleToggleAll}
                 aria-label={isFullyCleared ? "Reset all checklist items" : "Verify all checklist items"}
               >
@@ -107,8 +114,8 @@ export default function ArrivalInstructions() {
             </div>
           </div>
 
-          {/* 4 Interactive Pre-Flight Gate Cards */}
-          <div className="checklist-gates-grid" role="group" aria-label="Pre-flight checklist gates">
+          {/* Interactive Pre-Flight Gate Rows */}
+          <div className="readiness-gates-list" role="group" aria-label="Pre-flight checklist gates">
             {checklist.map((item, idx) => {
               const isChecked = !!checkedState[item.id];
               const Icon = categoryIcons[item.id] || CheckCircle2;
@@ -116,40 +123,37 @@ export default function ArrivalInstructions() {
               return (
                 <div
                   key={item.id}
-                  className={`readiness-gate-card ${isChecked ? 'gate-cleared' : 'gate-pending'}`}
+                  className={`readiness-gate-row ${isChecked ? 'gate-cleared' : 'gate-pending'}`}
                   onClick={() => toggleCheck(item.id)}
                   onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && toggleCheck(item.id)}
                   role="checkbox"
                   aria-checked={isChecked}
                   tabIndex={0}
                 >
-                  {/* Gate Top Header */}
-                  <div className="gate-header-row">
-                    <span className="gate-index-tag">GATE 0{idx + 1}</span>
-                    <span className={`gate-status-pill ${isChecked ? 'pill-cleared' : 'pill-pending'}`}>
-                      {isChecked ? 'VERIFIED' : item.badge}
-                    </span>
+                  {/* Left: Tactile Checkbox */}
+                  <div className="gate-check-trigger">
+                    <div className={`tactile-checkbox ${isChecked ? 'checked' : ''}`} aria-hidden="true">
+                      {isChecked && <Check size={14} className="check-mark-icon" />}
+                    </div>
                   </div>
 
-                  {/* Gate Main Body */}
-                  <div className="gate-main-body">
-                    <div className="gate-icon-bubble">
+                  {/* Icon & Gate Code */}
+                  <div className="gate-icon-col">
+                    <div className="gate-category-icon">
                       <Icon size={18} />
                     </div>
-                    <div className="gate-text-col">
-                      <h3 className="gate-title">{item.title}</h3>
-                      <p className="gate-instruction">{item.instruction}</p>
-                    </div>
                   </div>
 
-                  {/* Tactile Check Trigger */}
-                  <div className="gate-action-strip">
-                    <div className={`gate-checkbox ${isChecked ? 'checked' : ''}`} aria-hidden="true">
-                      {isChecked && <Check size={13} className="check-svg" />}
+                  {/* Main Content */}
+                  <div className="gate-detail-col">
+                    <div className="gate-headline-row">
+                      <span className="gate-index-code">GATE 0{idx + 1}</span>
+                      <h3 className="gate-headline-title">{item.title}</h3>
+                      <span className={`gate-status-tag ${isChecked ? 'tag-verified' : 'tag-pending'}`}>
+                        {isChecked ? 'VERIFIED' : item.badge}
+                      </span>
                     </div>
-                    <span className="gate-action-label">
-                      {isChecked ? 'Requirement Verified' : 'Click to Verify'}
-                    </span>
+                    <p className="gate-instruction-text">{item.instruction}</p>
                   </div>
                 </div>
               );
