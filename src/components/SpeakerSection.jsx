@@ -1,9 +1,11 @@
 import React from 'react';
-import { UserCheck, ShieldCheck, Award, Sparkles, Terminal, CheckCircle2 } from 'lucide-react';
+import { UserCheck, ShieldCheck, Award, Sparkles, Terminal, CheckCircle2, Linkedin, ExternalLink } from 'lucide-react';
 import { workshopConfig } from '../data/workshopConfig';
+import { useInView } from '../hooks/useInView';
 
 export default function SpeakerSection() {
   const { speaker } = workshopConfig;
+  const [sectionRef, isInView] = useInView({ threshold: 0.15 });
 
   const focusAreas = [
     {
@@ -21,12 +23,12 @@ export default function SpeakerSection() {
   ];
 
   return (
-    <section id="speaker" className="section-wrapper speaker-editorial-section">
+    <section id="speaker" className="section-wrapper speaker-editorial-section" ref={sectionRef}>
       <div className="container">
         {/* Section Header */}
-        <div className="section-header">
+        <div className={`section-header ${isInView ? 'section-revealed' : ''}`}>
           <span className="section-badge">
-            <Award size={14} />
+            <Award size={13} />
             Guest Speaker &amp; Guide
           </span>
           <h2 className="section-title">Guiding Your Cloud Journey</h2>
@@ -36,7 +38,7 @@ export default function SpeakerSection() {
         </div>
 
         {/* Editorial Masterclass Showcase */}
-        <div className="speaker-spotlight-card">
+        <div className={`speaker-spotlight-card ${isInView ? 'speaker-card-revealed' : ''}`}>
           {/* Left Column: Portrait & Technical Reticle Framing */}
           <div className="speaker-portrait-col">
             <div className="portrait-frame">
@@ -55,7 +57,7 @@ export default function SpeakerSection() {
 
               {/* Chapter Leadership Badge */}
               <div className="portrait-chapter-tag">
-                <Sparkles size={13} className="text-green-highlight" />
+                <Sparkles size={12} className="text-green-highlight" />
                 <span>Lead @ HerTechEra – Pune</span>
               </div>
             </div>
@@ -91,7 +93,9 @@ export default function SpeakerSection() {
             <div className="speaker-focus-grid">
               {focusAreas.map((area, idx) => (
                 <div key={idx} className="focus-area-item">
-                  <CheckCircle2 size={16} className="focus-icon text-green-highlight" />
+                  <div className="focus-icon-bubble">
+                    <CheckCircle2 size={16} className="focus-icon text-green-highlight" />
+                  </div>
                   <div className="focus-text">
                     <strong className="focus-title">{area.title}</strong>
                     <span className="focus-desc">{area.desc}</span>

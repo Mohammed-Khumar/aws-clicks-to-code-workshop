@@ -1,18 +1,83 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Sun, Moon, Menu, X, ArrowUpRight } from 'lucide-react';
 import { workshopConfig } from '../data/workshopConfig';
+import { useScrollProgress } from '../hooks/useScrollProgress';
+import { useScrollSpy } from '../hooks/useScrollSpy';
 
 export default function Navbar({ currentTheme, toggleTheme }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { organization, event } = workshopConfig;
+  const { scrollProgress, isScrolled } = useScrollProgress(25);
+
+  const sectionIds = ['journey', 'comparison', 'stack', 'speaker', 'checklist'];
+  const activeSection = useScrollSpy(sectionIds, 90);
 
   const closeMenu = () => setMobileMenuOpen(false);
 
+  // Close mobile drawer on Escape key
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape' && mobileMenuOpen) {
+        closeMenu();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [mobileMenuOpen]);
+
+  // Smooth scroll handler with offset for sticky navbar
+  const handleNavClick = (e, targetId) => {
+    e.preventDefault();
+    closeMenu();
+    const targetElement = document.getElementById(targetId);
+    if (targetElement) {
+      const navHeight = 70;
+      const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY - navHeight + 5;
+      window.scrollTo({
+        top: targetPosition,
+        behavior: 'smooth'
+      });
+      // Update hash in browser without jumping
+      window.history.pushState(null, '', `#${targetId}`);
+    }
+  };
+
+  const navLinks = [
+    { id: 'journey', label: 'Journey' },
+    { id: 'comparison', label: 'Clicks to Code' },
+    { id: 'stack', label: 'The Stack' },
+    { id: 'speaker', label: 'Your Guide' },
+    { id: 'checklist', label: 'Checklist' }
+  ];
+
   return (
-    <header className="navbar-header">
+    <header className={`navbar-header ${isScrolled ? 'navbar-scrolled' : ''}`}>
+      {/* Scroll Reading Progress Bar */}
+      <div 
+        className="nav-scroll-progress-track" 
+        role="progressbar" 
+        aria-valuenow={Math.round(scrollProgress)} 
+        aria-valuemin="0" 
+        aria-valuemax="100"
+        aria-label="Reading progress"
+      >
+        <div 
+          className="nav-scroll-progress-bar" 
+          style={{ width: `${scrollProgress}%` }} 
+        />
+      </div>
+
       <div className="container navbar-inner">
         {/* Brand Lockup */}
-        <a href="#" className="nav-brand-lockup" aria-label="AWS SBG MHSSCE Workshop Home">
+        <a 
+          href="#" 
+          className="nav-brand-lockup" 
+          aria-label="AWS SBG MHSSCE Workshop Home"
+          onClick={(e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
+        >
           <img
             src={organization.programEmblem}
             alt="AWS SBG MHSSCE Program Emblem"
@@ -24,14 +89,24 @@ export default function Navbar({ currentTheme, toggleTheme }) {
           </div>
         </a>
 
-        {/* Desktop Navigation Links */}
+        {/* Desktop Navigation Links with Active State Tracking */}
         <nav aria-label="Primary Navigation">
           <ul className="nav-links-desktop">
-            <li><a href="#journey" className="nav-link-item">Journey</a></li>
-            <li><a href="#comparison" className="nav-link-item">Clicks to Code</a></li>
-            <li><a href="#stack" className="nav-link-item">The Stack</a></li>
-            <li><a href="#speaker" className="nav-link-item">Your Guide</a></li>
-            <li><a href="#checklist" className="nav-link-item">Checklist</a></li>
+            {navLinks.map((link) => {
+              const isActive = activeSection === link.id;
+              return (
+                <li key={link.id}>
+                  <a
+                    href={`#${link.id}`}
+                    className={`nav-link-item ${isActive ? 'nav-link-active' : ''}`}
+                    onClick={(e) => handleNavClick(e, link.id)}
+                  >
+                    <span>{link.label}</span>
+                    {isActive && <span className="nav-link-pill-indicator" aria-hidden="true" />}
+                  </a>
+                </li>
+              );
+            })}
           </ul>
         </nav>
 
@@ -45,7 +120,7 @@ export default function Navbar({ currentTheme, toggleTheme }) {
             aria-label={`Switch to ${currentTheme === 'dark' ? 'light' : 'dark'} mode`}
             title={`Switch to ${currentTheme === 'dark' ? 'light' : 'dark'} mode`}
           >
-            {currentTheme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+            {currentTheme === 'dark' ? <Sun size={17} /> : <Moon size={17} />}
           </button>
 
           {/* Primary Meetup RSVP CTA */}
@@ -82,11 +157,20 @@ export default function Navbar({ currentTheme, toggleTheme }) {
           <div className="mobile-drawer-backdrop" onClick={closeMenu} aria-hidden="true" />
           <div className="mobile-drawer" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
             <nav className="mobile-nav-list">
-              <a href="#journey" className="mobile-drawer-link" onClick={closeMenu}>Journey</a>
-              <a href="#comparison" className="mobile-drawer-link" onClick={closeMenu}>Clicks to Code</a>
-              <a href="#stack" className="mobile-drawer-link" onClick={closeMenu}>The Stack</a>
-              <a href="#speaker" className="mobile-drawer-link" onClick={closeMenu}>Your Guide</a>
-              <a href="#checklist" className="mobile-drawer-link" onClick={closeMenu}>Checklist</a>
+              {navLinks.map((link) => {
+                const isActive = activeSection === link.id;
+                return (
+                  <a
+                    key={link.id}
+                    href={`#${link.id}`}
+                    className={`mobile-drawer-link ${isActive ? 'active' : ''}`}
+                    onClick={(e) => handleNavClick(e, link.id)}
+                  >
+                    <span>{link.label}</span>
+                    {isActive && <span className="mobile-active-dot" aria-hidden="true" />}
+                  </a>
+                );
+              })}
             </nav>
             <div className="mobile-drawer-cta">
               <a

@@ -1,24 +1,70 @@
-import React from 'react';
-import { AlertCircle, CheckCircle2, ArrowRight } from 'lucide-react';
+import React, { useState } from 'react';
+import { AlertCircle, CheckCircle2, ArrowRight, Zap, RefreshCw, Clock, ShieldAlert, ShieldCheck } from 'lucide-react';
 import { workshopConfig } from '../data/workshopConfig';
+import { useInView } from '../hooks/useInView';
 
 export default function ManualVsAutomated() {
   const { comparison } = workshopConfig;
+  const [sectionRef, isInView] = useInView({ threshold: 0.15 });
+  const [hoveredSide, setHoveredSide] = useState(null);
+
+  const metrics = [
+    {
+      label: "Provisioning Speed",
+      manual: "15+ Minutes",
+      automated: "45 Seconds",
+      icon: Clock
+    },
+    {
+      label: "Configuration Drift",
+      manual: "High Risk",
+      automated: "Zero Drift",
+      icon: ShieldAlert
+    },
+    {
+      label: "Replication Effort",
+      manual: "Manual Repeat",
+      automated: "Deterministic",
+      icon: RefreshCw
+    }
+  ];
 
   return (
-    <section id="comparison" className="section-wrapper comparison-section">
+    <section id="comparison" className="section-wrapper comparison-section" ref={sectionRef}>
       <div className="container">
-        <div className="section-header">
-          <span className="section-badge">{comparison.tagline}</span>
+        <div className={`section-header ${isInView ? 'section-revealed' : ''}`}>
+          <span className="section-badge">
+            <Zap size={13} />
+            {comparison.tagline}
+          </span>
           <h2 className="section-title">{comparison.title}</h2>
           <p className="section-description">
             Experience the architectural leap from repetitive, error-prone console clicks to reproducible, version-controlled Infrastructure as Code.
           </p>
         </div>
 
-        <div className="comparison-showcase">
+        {/* Quick Comparative Impact Matrix */}
+        <div className="comparison-metrics-strip" aria-label="Key Performance Comparison">
+          {metrics.map((metric) => (
+            <div key={metric.label} className="metric-compare-cell">
+              <span className="metric-compare-label">{metric.label}</span>
+              <div className="metric-compare-values">
+                <span className="metric-val-manual">{metric.manual}</span>
+                <span className="metric-compare-arrow">→</span>
+                <span className="metric-val-automated">{metric.automated}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Comparison Showcase */}
+        <div className={`comparison-showcase ${isInView ? 'comparison-cards-revealed' : ''}`}>
           {/* Left: MANUAL CONSOLE (Friction & Repetition) */}
-          <div className="comp-panel panel-manual">
+          <div 
+            className={`comp-panel panel-manual ${hoveredSide === 'manual' ? 'panel-focused' : ''}`}
+            onMouseEnter={() => setHoveredSide('manual')}
+            onMouseLeave={() => setHoveredSide(null)}
+          >
             <div className="comp-panel-top">
               <div className="comp-header-left">
                 <div className="comp-status-icon icon-manual">
@@ -26,7 +72,7 @@ export default function ManualVsAutomated() {
                 </div>
                 <div>
                   <h3 className="comp-title">{comparison.manual.title}</h3>
-                  <span className="comp-panel-subtitle">AWS Console Management</span>
+                  <span className="comp-panel-subtitle">AWS Management Console</span>
                 </div>
               </div>
               <span className="comp-badge badge-manual">5 Manual Steps</span>
@@ -47,19 +93,28 @@ export default function ManualVsAutomated() {
             </div>
 
             <div className="comp-panel-footer footer-manual">
-              <span>⚠️ Fragile · Manual drift risk · Hard to replicate</span>
+              <ShieldAlert size={14} className="text-amber-highlight" />
+              <span>Fragile · Manual drift risk · Hard to replicate</span>
             </div>
           </div>
 
           {/* Center Transformation Indicator */}
           <div className="comp-shift-arrow" aria-hidden="true">
+            <div className="shift-arrow-track">
+              <div className="shift-pulse-particle" />
+            </div>
             <div className="shift-arrow-circle">
               <ArrowRight size={20} />
             </div>
+            <span className="shift-arrow-text">TRANSFORM</span>
           </div>
 
           {/* Right: AUTOMATED (IaC & Speed) */}
-          <div className="comp-panel panel-automated">
+          <div 
+            className={`comp-panel panel-automated ${hoveredSide === 'automated' ? 'panel-focused' : ''}`}
+            onMouseEnter={() => setHoveredSide('automated')}
+            onMouseLeave={() => setHoveredSide(null)}
+          >
             <div className="comp-panel-top">
               <div className="comp-header-left">
                 <div className="comp-status-icon icon-automated">
@@ -88,7 +143,8 @@ export default function ManualVsAutomated() {
             </div>
 
             <div className="comp-panel-footer footer-automated">
-              <span>✓ Deterministic · Auditable · Replicate anywhere in seconds</span>
+              <ShieldCheck size={14} className="text-green-highlight" />
+              <span>Deterministic · Auditable · Replicate anywhere in seconds</span>
             </div>
           </div>
         </div>

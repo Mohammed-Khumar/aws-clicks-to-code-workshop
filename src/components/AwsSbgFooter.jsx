@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, MapPin, ArrowUp } from 'lucide-react';
+import { Mail, MapPin, ArrowUp, ExternalLink, Heart } from 'lucide-react';
 import { workshopConfig } from '../data/workshopConfig';
 
 function LinkedinIcon({ size = 18, ...props }) {
@@ -130,31 +130,43 @@ export default function AwsSbgFooter() {
             <h4 className="footer-col-title">Quick Links</h4>
             <ul className="footer-links-list">
               <li>
-                <a href="https://awssbg-mhssce.in/" target="_blank" rel="noopener noreferrer">Home</a>
+                <a href="https://awssbg-mhssce.in/" target="_blank" rel="noopener noreferrer">
+                  <span>Home</span>
+                  <ExternalLink size={12} className="link-ext-icon" />
+                </a>
               </li>
               <li>
-                <a href="https://awssbg-mhssce.in/#about" target="_blank" rel="noopener noreferrer">About</a>
+                <a href="https://awssbg-mhssce.in/#about" target="_blank" rel="noopener noreferrer">
+                  <span>About Chapter</span>
+                  <ExternalLink size={12} className="link-ext-icon" />
+                </a>
               </li>
               <li>
-                <a href="https://awssbg-mhssce.in/#events" target="_blank" rel="noopener noreferrer">Events</a>
+                <a href="https://awssbg-mhssce.in/#events" target="_blank" rel="noopener noreferrer">
+                  <span>Past Events</span>
+                  <ExternalLink size={12} className="link-ext-icon" />
+                </a>
               </li>
               <li>
-                <a href="https://awssbg-mhssce.in/#articles" target="_blank" rel="noopener noreferrer">Articles</a>
+                <a href={event.meetupUrl} target="_blank" rel="noopener noreferrer">
+                  <span>Meetup Group</span>
+                  <ExternalLink size={12} className="link-ext-icon" />
+                </a>
               </li>
             </ul>
           </div>
 
           {/* Column 3: Contact */}
           <div className="footer-col">
-            <h4 className="footer-col-title">Contact</h4>
+            <h4 className="footer-col-title">Contact & Venue</h4>
             <div className="footer-contact-list">
               <div className="contact-item">
-                <MapPin size={18} className="contact-item-icon" />
-                <span>MHSSCE, 8 Saboo Siddik Polytechnic Rd, Mumbai 400008</span>
+                <MapPin size={16} className="contact-item-icon" />
+                <span>MHSSCE Campus, 8 Saboo Siddik Polytechnic Rd, Byculla, Mumbai 400008</span>
               </div>
               <div className="contact-item">
-                <Mail size={18} className="contact-item-icon" />
-                <a href={`mailto:${organization.email}`}>{organization.email}</a>
+                <Mail size={16} className="contact-item-icon" />
+                <a href={`mailto:${organization.email}`} className="contact-email-link">{organization.email}</a>
               </div>
             </div>
           </div>
@@ -175,7 +187,8 @@ export default function AwsSbgFooter() {
             aria-label="Back to top"
             title="Back to top"
           >
-            <ArrowUp size={18} />
+            <ArrowUp size={16} />
+            <span>Top</span>
           </button>
         </div>
       </div>
